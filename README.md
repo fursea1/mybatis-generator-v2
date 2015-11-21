@@ -8,50 +8,40 @@
 ##项目运行：<br/>
 修改根目录下mybatis-config.xml<br/>
 ```javascript
-<configuration><br/>
-    <settings><br/>  
-        <!-- changes from the defaults for testing --><br/>
-        <setting name="cacheEnabled" value="false" /><br/>
-        <setting name="useGeneratedKeys" value="true" /><br/> 
-        <setting name="defaultExecutorType" value="REUSE" /><br/> 
-    </settings><br/>
-    <typeAliases><br/>
-       <typeAlias alias="ColumnEntity" type="org.app.mybatis.db.ColumnEntity"/><br/>
-       <typeAlias alias="TableEntity" type="org.app.mybatis.db.TableEntity"/><br/>
-    </typeAliases><br/>
-    <environments default="development"><br/>
-       <environment id="development"><br/>
-           <transactionManager type="jdbc"/><br/> 
-           <dataSource type="POOLED"><br/>
-              <property name="driver" value="com.mysql.jdbc.Driver"/><br/>
-              <property name="url" value="jdbc:mysql://127.0.0.1/ams"/><br/>
-              <property name="username" value="root"/><br/>
-              <property name="password" value="root"/><br/>
-           </dataSource><br/>
-       </environment><br/>
-    </environments><br/>
-    <mappers><br/>
-        <mapper resource="mappers/mysqlmappers.xml" /><br/>
-    </mappers><br/>
-</configuration><br/>
-<br/>
-<<<<<<< HEAD
+<configuration>
+    <settings> 
+        <!-- changes from the defaults for testing -->
+        <setting name="cacheEnabled" value="false" />
+        <setting name="useGeneratedKeys" value="true" /> 
+        <setting name="defaultExecutorType" value="REUSE" /> 
+    </settings>
+    <typeAliases>
+       <typeAlias alias="ColumnEntity" type="org.app.mybatis.db.ColumnEntity"/>
+       <typeAlias alias="TableEntity" type="org.app.mybatis.db.TableEntity"/>
+    </typeAliases>
+    <environments default="development">
+       <environment id="development">
+           <transactionManager type="jdbc"/> 
+           <dataSource type="POOLED">
+              <property name="driver" value="com.mysql.jdbc.Driver"/>
+              <property name="url" value="jdbc:mysql://127.0.0.1/ams"/>
+              <property name="username" value="root"/>
+              <property name="password" value="root"/>
+           </dataSource>
+       </environment>
+    </environments>
+    <mappers>
+        <mapper resource="mappers/mysqlmappers.xml" />
+    </mappers>
+</configuration>
 ```
-=======
->>>>>>> branch 'master' of https://github.com/hncdyj123/mybatis-generator-v2.git
 
 ##替换三项本地配置<br/>
-<<<<<<< HEAD
 ```
-<property name="url" value="jdbc:mysql://127.0.0.1/ams"/><br/>
-<property name="username" value="root"/><br/>
-<property name="password" value="root"/><br/>
+<property name="url" value="jdbc:mysql://127.0.0.1/ams"/>
+<property name="username" value="root"/>
+<property name="password" value="root"/>
 ```
-=======
-<property name="url" value="jdbc:mysql://127.0.0.1/ams"/><br/>
-<property name="username" value="root"/><br/>
-<property name="password" value="root"/><br/>
->>>>>>> branch 'master' of https://github.com/hncdyj123/mybatis-generator-v2.git
 
 ##数据库建立标准sql文本<br/>
 drop table if exists ams_operator_channel;<br/>
