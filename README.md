@@ -35,14 +35,23 @@
     </mappers><br/>
 </configuration><br/>
 <br/>
+<<<<<<< HEAD
 ```
+=======
+>>>>>>> branch 'master' of https://github.com/hncdyj123/mybatis-generator-v2.git
 
 ##替换三项本地配置<br/>
+<<<<<<< HEAD
 ```
 <property name="url" value="jdbc:mysql://127.0.0.1/ams"/><br/>
 <property name="username" value="root"/><br/>
 <property name="password" value="root"/><br/>
 ```
+=======
+<property name="url" value="jdbc:mysql://127.0.0.1/ams"/><br/>
+<property name="username" value="root"/><br/>
+<property name="password" value="root"/><br/>
+>>>>>>> branch 'master' of https://github.com/hncdyj123/mybatis-generator-v2.git
 
 ##数据库建立标准sql文本<br/>
 drop table if exists ams_operator_channel;<br/>
