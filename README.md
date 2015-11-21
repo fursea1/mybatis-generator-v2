@@ -1,11 +1,11 @@
-首先想说说写这个项目的目的
-1.mybatis自带的生成配置太繁杂
-2.想弄一个定制化的mybaits文件生成
-项目采用assembly打包，打出来的包可以直接解压到linux或者window上面运行
-项目运行：
-修改根目录下mybatis-config.xml
-<configuration>   
-    <settings>   
+#首先想说说写这个项目的目的<br/>
+1.mybatis自带的生成配置太繁杂<br/>
+2.想弄一个定制化的mybaits文件生成<br/>
+项目采用assembly打包，打出来的包可以直接解压到linux或者window上面运行<br/>
+项目运行：<br/>
+修改根目录下mybatis-config.xml<br/>
+<configuration><br/>
+    <settings><br/>  
         <!-- changes from the defaults for testing -->   
         <setting name="cacheEnabled" value="false" />   
         <setting name="useGeneratedKeys" value="true" />   
