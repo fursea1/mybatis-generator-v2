@@ -90,5 +90,3 @@ system.freemarker.filepath=e:\\ftl
 ams_operator_channel 表对应的实体名称为 OperatorChannel
 
 其余功能不累赘介绍，大家可以下载代码看。
-
-
