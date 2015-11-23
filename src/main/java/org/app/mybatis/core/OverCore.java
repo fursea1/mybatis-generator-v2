@@ -38,9 +38,6 @@ public class OverCore {
 
 	private static SqlSessionFactory sqlSessionFactory = null;
 
-	// 存放所有数据库表映射实体类信息
-	private static List<PropertyClass> propertyClassList = new ArrayList<PropertyClass>();
-
 	// 存放模板文件目录下所有模板定义的文件名 map key - > 文件名 value - > 文件路径 不包含文件名
 	@SuppressWarnings("rawtypes")
 	private static Map templateMap = new HashMap();
@@ -60,15 +57,17 @@ public class OverCore {
 	 * @return void
 	 * @throws
 	 */
-	public void getAllFileInfo(String dbName) throws Exception {
+	public List<PropertyClass> getAllFileInfo(String dbName) throws Exception {
+		// 存放所有数据库表映射实体类信息
+		List<PropertyClass> propertyClassList = new ArrayList<PropertyClass>();
 		// 获取模板文件位置
 		templateMap = FileUtil.listFile(StringUtil.isEmptyString(outFtlFilePath) ? (this.getClass().getResource("/").getPath() + File.separator + "ftl") : outFtlFilePath);
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		MysqlDbMapper dbMapper = sqlSession.getMapper(MysqlDbMapper.class);
 		List<TableEntity> tableEntityList = dbMapper.getAllTable(dbName); // 获取所有的表名称
 		if (tableEntityList != null && tableEntityList.size() > 0) {
-			PropertyClass propertyClass = new PropertyClass();
 			for (TableEntity tableEntity : tableEntityList) {
+				PropertyClass propertyClass = new PropertyClass();
 				propertyClass.setTableName(tableEntity.getTableName()); // 设置表名称
 				ColumnEntity tempcolumnEntity = new ColumnEntity(tableEntity.getTableName(), dbName);
 				List<ColumnEntity> columnEntityList = dbMapper.getTableColumns(tempcolumnEntity); // 存放表字段
@@ -84,6 +83,7 @@ public class OverCore {
 				propertyClassList.add(propertyClass);
 			}
 		}
+		return propertyClassList;
 	}
 
 	/**
@@ -95,7 +95,7 @@ public class OverCore {
 	 * @return void
 	 * @throws
 	 */
-	public void createAllFolder(String path) throws IOException {
+	public void createAllFolder(String path, List<PropertyClass> propertyClassList) throws IOException {
 		if (propertyClassList.size() > 0) {
 			for (PropertyClass pro : propertyClassList) {
 				// 创建文件
@@ -113,7 +113,7 @@ public class OverCore {
 	 * @throws
 	 */
 	@SuppressWarnings({"rawtypes", "unchecked"})
-	public void startThread(String... ftlNames) {
+	public void startThread(List<PropertyClass> propertyClassList, String... ftlNames) {
 		String filePath = ResManager.getString("system.file.output"); // 文件输出路径
 		// 模板定义文件路径
 		String ftlPath = StringUtil.isEmptyString(outFtlFilePath) ? (this.getClass().getResource("/").getPath() + File.separator + "ftl") : outFtlFilePath;

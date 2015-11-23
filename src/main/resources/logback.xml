@@ -22,8 +22,8 @@
 	</appender>
 
 	<!-- project default level -->
-	<logger name="org.app.mybatis" level="INFO" />
-	<root level="INFO">
+	<logger name="org.app.mybatis" level="DEBUG" />
+	<root level="DEBUG">
 		<appender-ref ref="console" />
 		<appender-ref ref="rollingFile" />
 	</root>

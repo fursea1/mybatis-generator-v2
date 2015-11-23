@@ -1,6 +1,9 @@
 package org.app.mybatis.core;
 
+import java.util.List;
+
 import org.app.mybatis.constant.Constant;
+import org.app.mybatis.domain.PropertyClass;
 import org.app.mybatis.util.ResManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,12 +32,12 @@ public class GeneratorMain {
 		LOGGER.info("-------------------开始生成文件-----------------------");
 		OverCore core = new OverCore();
 		// 获取数据库表所有的描述信息
-		core.getAllFileInfo(ResManager.getString("system.db.name"));
+		List<PropertyClass> propertyClassList = core.getAllFileInfo(ResManager.getString("system.db.name"));
 		// 生成基准文件地址
-		core.createAllFolder(ResManager.getString("system.file.output"));
+		core.createAllFolder(ResManager.getString("system.file.output"), propertyClassList);
 		// 启动生成线程
-		core.startThread(Constant.ENTITY_TEMPLATE_FILENAME, Constant.DAOENTITY_TEMPLATE_FILENAME, Constant.DAOIMPLENTITY_TEMPLATE_FILENAME, Constant.SERVICEENTITY_TEMPLATE_FILENAME,
-				Constant.SERVICEIMPLENTITY_TEMPLATE_FILENAME, Constant.XML_TEMPLATE_FILENAME);
+		core.startThread(propertyClassList, Constant.ENTITY_TEMPLATE_FILENAME, Constant.DAOENTITY_TEMPLATE_FILENAME, Constant.DAOIMPLENTITY_TEMPLATE_FILENAME,
+				Constant.SERVICEENTITY_TEMPLATE_FILENAME, Constant.SERVICEIMPLENTITY_TEMPLATE_FILENAME, Constant.XML_TEMPLATE_FILENAME);
 		LOGGER.info("-------------------结束生成文件-----------------------");
 	}
 }
